@@ -1,11 +1,9 @@
-import { Server } from "http";
 import mongoose from "mongoose";
 if (process.env.NODE_ENV !== "production") {
     require("dotenv").config();
 }
 import app from "./app";
 
-let server: Server;
 const port = process.env.PORT ? Number(process.env.PORT) : 3000;
 
 if (!process.env.MONGODB_URI) {
@@ -15,17 +13,22 @@ if (!process.env.MONGODB_URI) {
     process.env.MONGODB_URI = `mongodb+srv://${user}:${pass}@cluster0.vp2mu5v.mongodb.net/${db}?retryWrites=true&w=majority&appName=Cluster0`;
 }
 
-async function main() {
+async function connectDB() {
     try {
         await mongoose.connect(process.env.MONGODB_URI as string);
         console.log("Connected to MongoDB");
-        server = app.listen(port, () => {
-            console.log(`Server is running on port ${port}`);
-        });
     } catch (error) {
-        console.error("Error starting the server:", error);
+        console.error("Error connecting to MongoDB:", error);
         process.exit(1);
     }
 }
 
-main();
+connectDB();
+
+if (process.env.NODE_ENV !== "production") {
+    app.listen(port, () => {
+        console.log(`Server is running on port ${port}`);
+    });
+}
+
+export default app;

@@ -3,21 +3,14 @@
     "name": "library-management-api",
     "builds": [
         {
-            "src": "dist/server.js",
+            "src": "src/server.ts",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "dist/server.js"
+            "dest": "src/server.ts"
         }
-    ],
-    "env": {
-        "DB_USER": "@db-user",
-        "DB_PASSWORD": "@db-password",
-        "DB_NAME": "@db-name",
-        "PORT": "9000",
-        "NODE_ENV": "production"
-    }
+    ]
 }

@@ -21,16 +21,16 @@ Run project `npm run dev`
 
 ### Books
 
--   `POST /books` - Create a new book
--   `GET /books` - Get all books
--   `GET /books/:bookId` - Get book by ID
--   `PUT /books/:bookId` - Update book
--   `DELETE /books/:bookId` - Delete book
+-   `POST /api/books` - Create a new book
+-   `GET /api/books` - Get all books
+-   `GET /api/books/:bookId` - Get book by ID
+-   `PUT /api/books/:bookId` - Update book
+-   `DELETE /api/books/:bookId` - Delete book
 
 ### Borrowing
 
--   `POST /borrow` - Borrow a book
--   `GET /borrow` - Get borrowed books summary
+-   `POST /api/borrow` - Borrow a book
+-   `GET /api/borrow` - Get borrowed books summary
 
 ### Query
 

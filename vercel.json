@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "name": "library-management-api",
     "builds": [
         {
             "src": "dist/server.js",
@@ -11,5 +12,12 @@
             "src": "/(.*)",
             "dest": "dist/server.js"
         }
-    ]
+    ],
+    "env": {
+        "DB_USER": "@db-user",
+        "DB_PASSWORD": "@db-password",
+        "DB_NAME": "@db-name",
+        "PORT": "9000",
+        "NODE_ENV": "production"
+    }
 }

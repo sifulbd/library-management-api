@@ -38,6 +38,3 @@ Run project `npm run dev`
 -   `sort` - Sort order (asc/desc)
 -   `sortBy` - Sort field (default: createdAt)
 -   `limit` - Number of results (default: 10)
-
-Github: https://github.com/sifulbd/library-management-api
-Video: https://www.loom.com/share/c3702f4b198a420fbbf6314958e24497?sid=48c5aa3e-4866-4e08-829f-ab6e26da3bb8

@@ -92,7 +92,7 @@ export const getBorrowedBooksSummary = async (req: Request, res: Response): Prom
 
         res.status(200).json({
             success: true,
-            message: "Borrowed books summary retrieved successfully",
+            message: "Borrowed books summary successfully",
             data: summary,
         });
     } catch (error: any) {

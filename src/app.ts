@@ -7,6 +7,12 @@ const app: Application = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(
+    cors({
+        origin: ["https://soft-fenglisu-ae0089.netlify.app/", "http://localhost:5173"],
+    })
+);
+
 app.use("/api/books", bookRoutes);
 app.use("/api/borrow", borrowRoutes);
 

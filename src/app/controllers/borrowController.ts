@@ -14,9 +14,10 @@ export const borrowBook = async (req: Request, res: Response): Promise<void> => 
         return;
     }
 
-    const { book: bookId, quantity, dueDate } = validation.data;
+    const { quantity, dueDate } = validation.data;
 
     try {
+        const { bookId } = req.params;
         const book = await Book.findById(bookId);
         if (!book) {
             res.status(404).json({
@@ -35,6 +36,7 @@ export const borrowBook = async (req: Request, res: Response): Promise<void> => 
             });
             return;
         }
+        // update book availability
         book.copies -= quantity;
         await book.updateAvailability();
         // create borrow record
@@ -81,6 +83,7 @@ export const getBorrowedBooksSummary = async (req: Request, res: Response): Prom
                 $project: {
                     _id: 0,
                     book: {
+                        _id: "$bookDetails._id",
                         title: "$bookDetails.title",
                         isbn: "$bookDetails.isbn",
                     },
@@ -92,7 +95,7 @@ export const getBorrowedBooksSummary = async (req: Request, res: Response): Prom
 
         res.status(200).json({
             success: true,
-            message: "Borrowed books summary successfully",
+            message: "Borrowed books summary retrieved successfully",
             data: summary,
         });
     } catch (error: any) {

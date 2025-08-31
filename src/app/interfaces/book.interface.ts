@@ -9,6 +9,7 @@ export interface IBook {
     createdAt: Date;
     updatedAt: Date;
     updateAvailability(): Promise<void>;
+    imageUrl: string;
 }
 
 export enum Genre {

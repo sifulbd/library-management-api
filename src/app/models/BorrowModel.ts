@@ -17,7 +17,7 @@ const borrowSchema = new Schema<IBorrow>(
             type: Date,
             required: [true, "Due date is required"],
             validate: {
-                validator: (value: Date) => value > new Date(),
+                validator: (value: Date) => value.getTime() > Date.now(),
                 message: "Due date must be in the future",
             },
         },

@@ -43,26 +43,32 @@ export const createBook = async (req: Request, res: Response): Promise<void> => 
 
 export const getAllBooks = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { filter, sort = "asc", sortBy = "createdAt", limit = "10" } = req.query;
+        const { filter, sort = "asc", sortBy = "createdAt", limit = "10", skip } = req.query;
 
         const query: any = {};
 
+        // Apply genre filter
         if (filter) {
             query.genre = filter;
         }
 
+        // Build sort object
         const sortOrder = sort === "desc" ? -1 : 1;
         const sortObj: any = {};
         sortObj[sortBy as string] = sortOrder;
 
+        const totalBooks = await Book.countDocuments(query);
+
         const books = await Book.find(query)
             .sort(sortObj)
+            .skip(skip ? parseInt(skip as string) : 0)
             .limit(Number.parseInt(limit as string));
 
         res.status(200).json({
             success: true,
             message: "Books retrieved successfully",
             data: books,
+            totalBooks,
         });
     } catch (error) {
         res.status(500).json({

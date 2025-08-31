@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: ["https://soft-fenglisu-ae0089.netlify.app/", "http://localhost:5173"],
+        origin: ["", "http://localhost:5173"],
     })
 );
 

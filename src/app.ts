@@ -9,7 +9,7 @@ app.use(express.json());
 
 app.use(
     cors({
-        origin: ["", "http://localhost:5173"],
+        origin: ["https://library-management-api-xjyd.vercel.app/api", "http://localhost:5173"],
     })
 );
 
